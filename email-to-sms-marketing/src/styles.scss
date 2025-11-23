@@ -1,1 +1,252 @@
-/* You can add global styles to this file, and also import other style files */
+/* ===== Global color tokens ===== */
+:root {
+  /* Neutrals */
+  --ab-bg: #f5f5f7;
+  --ab-surface: #ffffff;
+  --ab-border: #e5e7eb;
+  --ab-text-main: #111827;      // near-black
+  --ab-text-muted: #4b5563;     // gray for body/secondary
+  --ab-text-on-dark: #f9fafb;   // off-white for dark backgrounds
+
+  /* Brand blues */
+  --ab-navy: #0f172a;           // darkest
+  --ab-blue: #1e3a8a;           // primary mid blue
+  --ab-accent: #2563eb;         // accent / links / primary buttons
+  --ab-accent-soft: #dbeafe;    // pale blue background
+
+  /* Status colors (future-proofing) */
+  --ab-success: #15803d;
+  --ab-danger: #b91c1c;
+}
+
+/* ===== Global reset / layout ===== */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: var(--ab-bg);
+  color: var(--ab-text-main);
+}
+
+a {
+  color: var(--ab-accent);
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+/* ===== Shell ===== */
+
+.app-shell {
+  min-height: 100vh;
+  background: var(--ab-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== Top nav / brand ===== */
+
+.ab-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--ab-border);
+}
+
+.ab-header-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ab-brand {
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  color: var(--ab-text-main);
+}
+
+.ab-nav {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.ab-nav a {
+  color: var(--ab-text-muted);
+}
+
+.ab-nav a:hover,
+.ab-nav a:focus,
+.ab-nav a.active {
+  color: var(--ab-text-main);
+}
+
+/* ===== Main layout ===== */
+
+.ab-main {
+  flex: 1;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 3.5rem;
+}
+
+/* ===== Hero section ===== */
+
+.hero {
+  margin-bottom: 3rem;
+}
+
+.hero-eyebrow {
+  font-size: 0.9rem;
+  color: var(--ab-accent);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  line-height: 1.15;
+  font-weight: 700;
+  color: var(--ab-text-main);
+  margin-bottom: 0.75rem;
+}
+
+.hero-subtitle {
+  max-width: 44rem;
+  font-size: 1rem;
+  color: var(--ab-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.hero-meta {
+  font-size: 0.85rem;
+  color: var(--ab-text-muted);
+}
+
+/* Buttons */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.4rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: var(--ab-accent);
+  color: var(--ab-text-on-dark);
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: #1d4ed8;
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.3rem;
+  border-radius: 999px;
+  border: 1px solid var(--ab-border);
+  background: var(--ab-surface);
+  color: var(--ab-text-main);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.btn-outline:hover,
+.btn-outline:focus {
+  border-color: var(--ab-accent);
+}
+
+/* ===== Feature cards ===== */
+
+.section-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  color: var(--ab-text-main);
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.feature-card {
+  padding: 1.4rem 1.4rem 1.5rem;
+  border-radius: 0.75rem;
+  background: radial-gradient(circle at top left, var(--ab-blue), var(--ab-navy));
+  color: var(--ab-text-on-dark);
+  box-shadow: 0 16px 35px rgba(15, 23, 42, 0.4);
+}
+
+.feature-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.feature-card p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: #e5e7eb;
+}
+
+/* ===== Body sections ===== */
+
+.section-body {
+  margin-top: 2rem;
+  max-width: 52rem;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--ab-text-muted);
+}
+
+.section-body h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 1.75rem 0 0.5rem;
+  color: var(--ab-text-main);
+}
+
+.section-body ul {
+  margin: 0.5rem 0 0 1.2rem;
+  padding: 0;
+}
+
+/* ===== Footer ===== */
+
+.ab-footer {
+  border-top: 1px solid var(--ab-border);
+  padding: 1rem 1.25rem 1.75rem;
+  font-size: 0.85rem;
+  color: var(--ab-text-muted);
+  text-align: center;
+}
