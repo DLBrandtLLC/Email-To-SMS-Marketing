@@ -89,6 +89,26 @@ body {
   flex-wrap: wrap;
 }
 
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px; /* row gap, column gap */
+  align-items: center;
+}
+
+.footer-links a {
+  white-space: nowrap;
+}
+
+.site-footer .footer-links a {
+  color: var(--muted);
+}
+
+.site-footer .footer-links a:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+
 a {
   color: var(--link);
   text-decoration: none;
