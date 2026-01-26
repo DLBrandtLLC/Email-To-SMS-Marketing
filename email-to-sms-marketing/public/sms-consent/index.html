@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Alert Bridge SMS Consent</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Opt in or opt out of Alert Bridge SMS alerts." />
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles.css" />
+
+    <style>
+      /* Small, page-local helpers (keeps changes self-contained) */
+      .step-title {
+        display: flex;
+        gap: 10px;
+        align-items: baseline;
+        flex-wrap: wrap;
+      }
+      .step-chip {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid #cfcfcf;
+        font-size: 0.9rem;
+        background: rgba(0,0,0,0.03);
+        white-space: nowrap;
+      }
+      .locked {
+        opacity: 0.65;
+      }
+      .locked-note {
+        margin-top: 10px;
+      }
+      fieldset {
+        border: 0;
+        padding: 0;
+        margin: 0;
+        min-width: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container nav-container">
+        <a class="brand" href="/">Alert Bridge</a>
+
+        <nav class="nav-links">
+          <a href="../index.html">Home</a>
+          <a href="../pricing/index.html">Pricing</a>
+          <a href="../getting-started/index.html">Getting Started</a>
+          <a href="../sms-program/index.html">SMS Program</a>
+          <a href="../sms-consent/index.html">SMS Consent</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-content container">
+      <section class="page">
+        <h1>SMS Consent</h1>
+
+        <noscript>
+          <div class="alert alert-warning">
+            This page requires JavaScript to verify your phone number.
+            If you can’t enable JavaScript, email
+            <a href="mailto:support@alertbridge.app">support@alertbridge.app</a>
+            for help opting in or out.
+          </div>
+        </noscript>
+
+        <div id="tokenError" class="alert alert-warning hidden">
+          If your organization provided an invitation link, use that link to display the organization name and complete enrollment.
+          You can still manage your phone’s SMS delivery status here after verification.
+        </div>
+
+        <!-- Call to Action (Microsoft ACS “Consent” requirements) -->
+        <div class="card">
+          <h2>Before you continue</h2>
+
+          <p>
+            You are managing operational SMS alerts delivered by <strong>Alert Bridge</strong>
+            for <strong id="orgName">your organization</strong>.
+          </p>
+
+          <p class="muted" style="margin-top: 6px;">
+            If your organization provided you a link, use that link to display the organization name and complete enrollment.
+            Without a link, you can still manage your phone’s global SMS delivery status (opt out / re-opt in) after verification.
+          </p>
+
+          <ul>
+            <li><strong>Program type:</strong> Operational alerts only (no marketing or promotional messages).</li>
+            <li><strong>Sending number:</strong> Messages are sent from <strong>+1 833-527-7650</strong>.</li>
+            <li>
+              <strong>Recurring program:</strong> You may receive recurring operational alerts.
+              <strong>Frequency varies</strong> based on events (no fixed schedule).
+            </li>
+            <li><strong>Opt-in:</strong> Verify your phone number, then select <em>Enable SMS Alerts</em>.</li>
+            <li>
+              <strong>Opt-out:</strong> Reply <strong>STOP</strong> to any Alert Bridge message, or verify your number here and select <em>Stop SMS Alerts</em>.
+              We also honor common opt-out keywords such as <strong>UNSUBSCRIBE</strong> and <strong>CANCEL</strong>.
+            </li>
+            <li><strong>Fees:</strong> Message and data rates may apply.</li>
+          </ul>
+
+          <p>
+            For details, see our
+            <a href="../privacy-policy/index.html">Privacy Policy</a>,
+            <a href="../terms-and-conditions/index.html">Terms &amp; Conditions</a>,
+            and
+            <a href="../sms-program/index.html">SMS Program</a>.
+          </p>
+
+          <p class="muted">
+            Need help?
+            Reply <strong>HELP</strong> to any Alert Bridge message for support contact info and a link to this page,
+            or email <a href="mailto:support@alertbridge.app">support@alertbridge.app</a>.
+          </p>
+        </div>
+
+        <!-- Step 1: Verify phone number -->
+        <div class="card" id="stepVerify">
+          <div class="step-title">
+            <span class="step-chip">Step 1</span>
+            <h2 style="margin:0;">Verify your phone number</h2>
+          </div>
+
+          <p class="muted">
+            We’ll send a one-time code to confirm you control the phone number you’re managing.
+          </p>
+
+          <form id="verifyForm" class="form">
+            <div class="form-row">
+              <label for="phone">Mobile phone number</label>
+              <input
+                id="phone"
+                name="phone"
+                inputmode="tel"
+                autocomplete="tel"
+                placeholder="(555) 555-5555"
+                required
+              />
+              <div class="field-hint">US numbers supported. Enter your mobile number.</div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn-primary" id="sendCodeBtn">Send verification code</button>
+            </div>
+          </form>
+
+          <!-- Code entry is always visible (for clarity), but disabled until a code is sent -->
+          <form id="codeForm" class="form" autocomplete="one-time-code">
+            <fieldset id="codeFieldset" disabled>
+              <div class="form-row">
+                <label for="code">Verification code</label>
+                <input
+                  id="code"
+                  name="code"
+                  inputmode="numeric"
+                  autocomplete="one-time-code"
+                  placeholder="123456"
+                  required
+                />
+                <div class="field-hint">After you request a code, enter it here.</div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn-primary" id="verifyCodeBtn">Verify</button>
+                <button type="button" class="btn-secondary" id="resendBtn">Resend code</button>
+                <button type="button" class="btn-secondary" id="changeNumberBtn">Use a different number</button>
+              </div>
+            </fieldset>
+
+            <p id="codeLockedNote" class="muted locked-note">
+              Request a verification code above to continue.
+            </p>
+          </form>
+
+          <div id="verifyStatus" class="alert hidden"></div>
+        </div>
+
+        <!-- Step 2: Consent controls (always visible, disabled until verified) -->
+        <div class="card locked" id="stepConsent">
+          <div class="step-title">
+            <span class="step-chip">Step 2</span>
+            <h2 style="margin:0;">Manage SMS alerts</h2>
+          </div>
+
+          <p class="muted">
+            SMS alerts for <span id="orgName2">your organization</span>.
+            All Alert Bridge SMS is sent from <strong>+1 833-527-7650</strong>, regardless of organization.
+          </p>
+
+          <p class="muted" style="margin-top: 8px;">
+            This is a recurring operational alert program. Frequency varies based on events (no fixed schedule).
+            Messages are operational only (no marketing).
+          </p>
+
+          <div class="status-row">
+            <span class="status-label">Current status:</span>
+            <span id="consentBadge" class="badge">Unknown</span>
+          </div>
+
+          <fieldset id="consentFieldset" disabled>
+            <div class="form-actions">
+              <button class="btn-primary" id="optInBtn" type="button">Enable SMS Alerts</button>
+              <button class="btn-secondary" id="optOutBtn" type="button">Stop SMS Alerts</button>
+            </div>
+          </fieldset>
+
+          <p id="step2LockedNote" class="muted locked-note">
+            Complete Step 1 above to enable these controls.
+          </p>
+
+          <div id="consentStatus" class="alert hidden"></div>
+
+          <p class="muted" style="margin-top: 14px;">
+            You can opt out anytime by replying <strong>STOP</strong>.
+            To resume later, reply <strong>START</strong> or return to this page and opt in again.
+            For help, reply <strong>HELP</strong> to receive support contact info and a link to this page.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-container">
+        <div class="footer-links">
+          <a href="../privacy-policy/index.html">Privacy Policy</a>
+          <a href="../terms-and-conditions/index.html">Terms & Conditions</a>
+        </div>
+        <span>© <span id="year"></span> Alert Bridge. All rights reserved.</span>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+    <script src="./sms-consent.js" defer></script>
+  </body>
+</html>

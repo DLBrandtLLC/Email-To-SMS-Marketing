@@ -264,3 +264,133 @@ figcaption {
   box-shadow: var(--shadow);
   margin-top: 18px;
 }
+
+/* Utilities */
+.hidden { display: none !important; }
+.muted { color: var(--muted); }
+
+/* Alerts */
+.alert {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+}
+
+.alert-success {
+  border-color: rgba(64, 225, 155, 0.35);
+  background: rgba(64, 225, 155, 0.10);
+}
+
+.alert-warning {
+  border-color: rgba(255, 203, 97, 0.35);
+  background: rgba(255, 203, 97, 0.10);
+}
+
+.alert-error {
+  border-color: rgba(255, 120, 120, 0.35);
+  background: rgba(255, 120, 120, 0.10);
+}
+
+/* Forms */
+.form {
+  margin-top: 10px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+label {
+  font-size: 14px;
+  color: var(--text);
+  font-weight: 600;
+}
+
+input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text);
+  outline: none;
+}
+
+input::placeholder {
+  color: rgba(233, 238, 245, 0.55);
+}
+
+input:focus {
+  border-color: rgba(137, 180, 255, 0.50);
+  background: rgba(137, 180, 255, 0.05);
+}
+
+input:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.field-hint {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+button.btn-primary,
+button.btn-secondary {
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Consent status */
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.status-label {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.badge-active {
+  border-color: rgba(64, 225, 155, 0.45);
+  background: rgba(64, 225, 155, 0.12);
+}
+
+.badge-inactive {
+  border-color: rgba(255, 120, 120, 0.45);
+  background: rgba(255, 120, 120, 0.12);
+}
+
+.badge-unknown {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.05);
+}
