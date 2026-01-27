@@ -42,6 +42,13 @@
           For internal operational alerts only — not for marketing or promotional messaging.
         </p>
 
+        <!-- Test-mode notice (until Azure SMS compliance / TFV approval) -->
+        <div class="alert alert-warning" style="margin-top: 14px;">
+          Checkout is currently operating in <strong>test mode</strong> while we complete Azure SMS compliance review
+          and toll-free verification. The Subscribe buttons below open a test checkout flow and should not be used for
+          live purchasing until SMS sending is enabled for production use.
+        </div>
+
         <section class="section" style="margin-top: 18px;">
           <h2>Plan overview</h2>
           <p>
@@ -51,7 +58,7 @@
           </p>
           <p class="hero-note" style="margin: 10px 0 0 0;">
             Note: Lemon Squeezy is the system of record for pricing, billing cadence, taxes, invoices, and payment status.
-            The plan details shown here are for clarity and may be updated over time. :contentReference[oaicite:1]{index=1}
+            The plan details shown here are for clarity and may be updated over time.
           </p>
         </section>
 
@@ -76,7 +83,7 @@
               <li><strong>Advanced Filters:</strong> No</li>
               <li><strong>Custom Sender ID:</strong> No</li>
             </ul>
-            <a 
+            <a
               href="https://alertbridge.lemonsqueezy.com/checkout/buy/9826d0bf-63e8-4c0a-859a-0a9d91f42480?embed=1&media=0&logo=0&desc=0&discount=0&enabled=1161567"
               class="btn-primary lemonsqueezy-button"
             >
@@ -206,23 +213,20 @@
             Recipients may reply <strong>STOP</strong> to disable delivery and <strong>START</strong> to resume.
           </p>
           <p style="margin: 0;">
-            See <a href="../sms-program/index.html">SMS Program</a> for full program details.
+            See <a href="../sms-program/index.html">SMS Program</a> for full program details and
+            <a href="../sms-consent/index.html">SMS Consent</a> to manage opt-in/opt-out.
           </p>
         </section>
-
-        <script src="https://assets.lemonsqueezy.com/lemon.js" defer></script>
       </section>
     </main>
 
     <footer class="site-footer">
       <div class="container footer-container">
         <div class="footer-links">
-          
           <a href="../privacy-policy/index.html">Privacy Policy</a>
           <a href="../terms-and-conditions/index.html">Terms & Conditions</a>
           <a href="../sms-program/index.html">SMS Program</a>
           <a href="../sms-consent/index.html">SMS Consent</a>
-        
         </div>
         <span>© <span id="year"></span> Alert Bridge. All rights reserved.</span>
       </div>

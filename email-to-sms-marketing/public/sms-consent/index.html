@@ -89,7 +89,8 @@
 
           <ul>
             <li><strong>Program type:</strong> Operational alerts only (no marketing or promotional messages).</li>
-            <li><strong>Sending number:</strong> Messages are sent from <strong>+18335277650</strong> (<strong>+1 833-527-7650</strong>).
+            <li>
+              <strong>Sending number:</strong> Messages are sent from <strong>+18335277650</strong> (<strong>+1 833-527-7650</strong>).
             </li>
             <li>
               <strong>Recurring program:</strong> You may receive recurring operational alerts.
@@ -126,8 +127,14 @@
           </div>
 
           <p class="muted">
-            We’ll send a one-time code to confirm you control the phone number you’re managing.
+            We use a standard one-time-code verification flow to confirm you control the phone number you’re managing.
           </p>
+
+          <!-- Reviewer-facing honesty (kept simple, not "demo" language) -->
+          <div class="alert alert-warning" id="verificationNotice">
+            During initial launch, SMS delivery will be unavailable until our Azure toll-free verification is approved.
+            The verification experience below is representative until SMS sending is enabled.
+          </div>
 
           <form id="verifyForm" class="form">
             <div class="form-row">
@@ -162,7 +169,7 @@
                   placeholder="123456"
                   required
                 />
-                <div class="field-hint">After you request a code, enter it here.</div>
+                <div class="field-hint">Enter the one-time code to continue.</div>
               </div>
 
               <div class="form-actions">
@@ -172,12 +179,11 @@
               </div>
             </fieldset>
 
-          <p class="muted" style="margin-top: 10px;">
-            By selecting <strong>Enable SMS Alerts</strong>, you consent to receive recurring operational SMS alerts
-            from Alert Bridge at the phone number you verified. Message and data rates may apply.
-            Reply <strong>STOP</strong> to opt out and <strong>HELP</strong> for help.
-          </p>
-
+            <p class="muted" style="margin-top: 10px;">
+              By selecting <strong>Enable SMS Alerts</strong>, you consent to receive recurring operational SMS alerts
+              from Alert Bridge at the phone number you verified. Message and data rates may apply.
+              Reply <strong>STOP</strong> to opt out and <strong>HELP</strong> for help.
+            </p>
 
             <p id="codeLockedNote" class="muted locked-note">
               Request a verification code above to continue.
@@ -234,12 +240,10 @@
     <footer class="site-footer">
       <div class="container footer-container">
         <div class="footer-links">
-          
           <a href="../privacy-policy/index.html">Privacy Policy</a>
           <a href="../terms-and-conditions/index.html">Terms & Conditions</a>
           <a href="../sms-program/index.html">SMS Program</a>
           <a href="../sms-consent/index.html">SMS Consent</a>
-        
         </div>
         <span>© <span id="year"></span> Alert Bridge. All rights reserved.</span>
       </div>

@@ -100,10 +100,6 @@
   };
 
   // Basic US-focused normalization
-  // Accepts:
-  //   - 10 digits -> +1XXXXXXXXXX
-  //   - 11 digits starting with 1 -> +1XXXXXXXXXX
-  //   - already in +E.164 -> preserve
   const normalizePhoneToE164 = (raw) => {
     const input = (raw || "").trim();
     if (!input) {
@@ -186,7 +182,6 @@
     try {
       const resolved = await api.resolveToken(state.token);
       if (!resolved || !resolved.ok) {
-        // If token can't be resolved, still allow global management after verification.
         state.token = null;
         setHidden(tokenError, false);
         setConsentBadge("Unknown");
@@ -221,22 +216,27 @@
 
     try {
       setBusy(true);
-      setAlert(verifyStatus, "alert-warning", "Sending verification code...");
+      setAlert(verifyStatus, "alert-warning", "Starting verification...");
       const result = await api.sendOtp({ token: state.token, phoneE164: state.phoneE164 });
 
       if (!result || !result.ok) {
-        setAlert(verifyStatus, "alert-error", result?.error || "Unable to send a verification code. Please try again.");
+        setAlert(verifyStatus, "alert-error", result?.error || "Unable to start verification. Please try again.");
         return;
       }
 
       state.codeSent = true;
-      setAlert(verifyStatus, "alert-success", "Verification code sent. Check your phone.");
-      syncUi();
 
-      // Focus code input (now enabled)
+      // No promise that an SMS was delivered (important while TFV is pending)
+      setAlert(
+        verifyStatus,
+        "alert-success",
+        "Verification step started. If SMS delivery is available, you’ll receive a one-time code shortly. Enter the code below to continue."
+      );
+
+      syncUi();
       setTimeout(() => codeInput?.focus(), 0);
     } catch (e) {
-      setAlert(verifyStatus, "alert-error", "Unable to send a verification code. Please try again.");
+      setAlert(verifyStatus, "alert-error", "Unable to start verification. Please try again.");
     } finally {
       setBusy(false);
     }
@@ -252,7 +252,7 @@
 
     try {
       setBusy(true);
-      setAlert(verifyStatus, "alert-warning", "Resending verification code...");
+      setAlert(verifyStatus, "alert-warning", "Retrying verification code send...");
       const result = await api.sendOtp({ token: state.token, phoneE164: state.phoneE164 });
 
       if (!result || !result.ok) {
@@ -260,7 +260,12 @@
         return;
       }
 
-      setAlert(verifyStatus, "alert-success", "Verification code resent.");
+      setAlert(
+        verifyStatus,
+        "alert-success",
+        "Verification step updated. If SMS delivery is available, a new code will arrive shortly."
+      );
+
       setTimeout(() => codeInput?.focus(), 0);
     } catch (e) {
       setAlert(verifyStatus, "alert-error", "Unable to resend the code. Please try again.");
@@ -270,7 +275,6 @@
   }
 
   function onChangeNumber() {
-    // Reset Step 1b and Step 2 so the user can enter a different number
     setAlert(verifyStatus, null, "");
     setAlert(consentStatusEl, null, "");
 
@@ -368,7 +372,7 @@
   changeNumberBtn?.addEventListener("click", onChangeNumber);
   codeForm?.addEventListener("submit", onVerifyCode);
 
-  // Small UX improvement: allow only digits in the code field.
+  // Allow only digits in the code field.
   codeInput?.addEventListener("input", () => {
     codeInput.value = (codeInput.value || "").replace(/\D/g, "");
   });

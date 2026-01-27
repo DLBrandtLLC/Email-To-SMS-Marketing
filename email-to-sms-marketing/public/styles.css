@@ -414,3 +414,19 @@ button:disabled {
   border-color: rgba(255, 255, 255, 0.16);
   background: rgba(255, 255, 255, 0.05);
 }
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.feature > a.btn-primary,
+.feature > a.btn-secondary,
+.feature > button.btn-primary,
+.feature > button.btn-secondary {
+  margin-top: auto;           /* pushes the button to the bottom */
+  width: 100%;
+  text-align: center;
+  padding: 12px 14px;         /* keeps comfortable padding */
+}
