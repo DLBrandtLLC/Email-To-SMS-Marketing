@@ -37,51 +37,77 @@
 
         <h2>Service Description</h2>
         <p>
-          Alert Bridge enables organizations to send operational SMS notifications to
-          designated employees, contractors, and on-call personnel. Messages may
-          include alarms, equipment faults, system alerts, and other operational
-          notices. The Service is intended for internal operational use and is not
-          designed for marketing, consumer engagement, entertainment, or general
-          communication.
+          Alert Bridge enables organizations to convert inbound operational alert emails into platform-branded SMS notifications
+          that include a secure link to view alert details in a web log. Outbound SMS messages are a generic notification
+          and secure link; detailed alert content is displayed on the web after phone verification.
+          The Service is intended for internal operational use and is not designed for marketing, consumer engagement,
+          entertainment, or general communication.
         </p>
+
+        <h2>Secure Link Access and Phone Verification</h2>
+        <p>
+          Alert Bridge uses a secure link + phone verification model to protect alert details and reduce risk of sensitive or
+          inappropriate content being delivered over SMS.
+        </p>
+        <ul>
+          <li>
+            <strong>Secure link:</strong> SMS notifications include a secure link to view alert details in the Alert Bridge web log.
+          </li>
+          <li>
+            <strong>Phone verification:</strong> Recipients must verify control of their phone number using a one-time code before
+            viewing alert details.
+          </li>
+          <li>
+            <strong>Expiration and anti-forwarding intent:</strong> Links, sessions, and verification tokens are time-limited and are
+            designed to reduce the usefulness of forwarded messages. Recipients may be asked to verify again after a period of time,
+            or if risk signals are detected.
+          </li>
+          <li>
+            <strong>Tenant-scoped access:</strong> After verification, recipients can only view alerts for organizations/tenants they are
+            currently authorized to access.
+          </li>
+        </ul>
 
         <h2>Administrator Responsibilities</h2>
         <p>
           Customer organizations are responsible for:
         </p>
         <ul>
-          <li>Adding and maintaining accurate recipient phone numbers</li>
-          <li>Ensuring that only authorized recipients are enrolled</li>
-          <li>Responding to internal requests for SMS removal or reinstatement</li>
-          <li>Ensuring SMS usage complies with applicable laws, regulations, and organizational policies</li>
+          <li>Managing who is authorized to configure routes, groups, and enrollment links</li>
+          <li>Inviting only intended recipients who have an operational need and an existing business relationship</li>
+          <li>Responding to internal requests related to enrollment eligibility (for example, role changes or offboarding)</li>
+          <li>Ensuring SMS usage complies with applicable laws, regulations, carrier policies, and organizational policies</li>
           <li>Monitoring internal access controls governing who may send or configure alerts</li>
         </ul>
 
-        <h2>Recipient Opt-In and Opt-Out</h2>
+        <h2>Recipient Enrollment, Delivery Status, and Opt-Out</h2>
         <p>
-          Recipients are added to Alert Bridge by authorized administrators based on
-          an existing business relationship and operational need. This administrator-
-          managed enrollment serves as opt-in for SMS alerts.
+          Recipients are enrolled through an administrator-managed invitation workflow based on an existing business relationship and
+          operational need. Administrators invite recipients by sending an enrollment link through their normal channels. Recipients
+          enter their phone number and confirm control using phone verification before enabling SMS delivery.
         </p>
 
         <p>
-          Recipients may reply <strong>STOP</strong> to any Alert Bridge SMS message
-          to disable further SMS delivery. A confirmation message is sent after STOP
-          is processed. Recipients may reply <strong>START</strong> to resume
-          receiving alerts.
+          Recipients may reply <strong>STOP</strong> to any Alert Bridge SMS message to disable further SMS delivery. A confirmation message
+          is sent after STOP is processed. Recipients may reply <strong>START</strong> to resume receiving notifications.
         </p>
 
         <p>
-          STOP and START actions do not remove the recipient record from the
-          organization’s account; they only control SMS delivery. Administrators may
-          also disable or re-enable recipients using the admin console.
+          <strong>Strict STOP behavior:</strong> If a recipient replies <strong>STOP</strong>, they will no longer receive operational notifications or
+          phone verification codes from Alert Bridge until they reply <strong>START</strong>.
+        </p>
+
+        <p>
+          <strong>Administrator override:</strong> Administrators cannot override a recipient’s STOP choice to force SMS delivery.
+          Administrators may manage enrollment eligibility and tenant configuration, but SMS delivery remains disabled until the recipient
+          re-enables it with <strong>START</strong>.
         </p>
 
         <h2>Data Retention</h2>
         <p>
-          Alert Bridge retains operational logs—including routing metadata, alert
-          timestamps, audit trails, and SMS delivery status—according to the
-          retention window for the customer’s subscription plan. Retention periods are:
+          Alert Bridge retains operational logs—including inbound email content stored in logs, routing metadata, alert
+          timestamps, audit trails, and delivery outcomes—according to the retention window for the customer’s subscription plan.
+          Retention periods are:
         </p>
 
         <ul>
@@ -92,153 +118,130 @@
         </ul>
 
         <p>
-          Logs older than the retention period are permanently deleted and cannot be
-          restored. Extended retention may be available under custom enterprise
-          agreements.
+          Logs older than the retention period are permanently deleted and cannot be restored. Extended retention may be available under
+          custom enterprise agreements.
         </p>
 
         <h2>Prohibited Content and Usage</h2>
         <p>
-          Customers are responsible for ensuring that all content sent through the
-          Service complies with applicable laws, carrier policies, and the
-          requirements of Azure Communication Services (ACS) and its telecommunications
-          partners. The following types of content and activities are strictly
-          prohibited:
+          Alert Bridge is for internal operational alerts only. Customers must not use the Service for marketing, promotional, political,
+          or consumer messaging. Although outbound SMS messages are generic and controlled by Alert Bridge, customers are responsible for
+          how they use the platform, including the types of inbound emails and operational workflows they route into Alert Bridge.
+        </p>
+
+        <p>
+          Customers must not intentionally route prohibited or unlawful content into Alert Bridge (including content that would violate carrier
+          rules or Azure Communication Services requirements). Prohibited usage includes, without limitation:
         </p>
 
         <ul>
-          <li>Marketing, promotional, or advertising messages of any kind</li>
+          <li>Marketing, promotional, advertising, lead-generation, or affiliate content of any kind</li>
           <li>Political messaging, including campaign-related or issue-based content</li>
-          <li>SHAFT content: sex, hate, alcohol, firearms, or tobacco (unless expressly permitted)</li>
-          <li>Fraudulent, deceptive, harassing, or otherwise unlawful content</li>
-          <li>Phishing, scams, or attempts to obtain personal or financial information under false pretenses</li>
-          <li>High-risk financial or transactional messages unrelated to internal operations</li>
-          <li>Protected health information (PHI) unless a compliance agreement is in place</li>
-          <li>Any content prohibited by CTIA, TCPA, FCC, carrier rules, or ACS acceptable use policies</li>
+          <li>SHAFT content: sex, hate, alcohol, firearms, or tobacco (unless expressly permitted and compliant)</li>
+          <li>Fraudulent, deceptive, harassing, threatening, or otherwise unlawful content</li>
+          <li>Phishing, scams, social engineering, or attempts to obtain personal or financial information under false pretenses</li>
+          <li>High-risk financial or transactional messaging unrelated to internal operations</li>
+          <li>Protected health information (PHI) unless a separate compliance agreement is in place</li>
+          <li>Any content or activity prohibited by CTIA, TCPA, FCC, carrier rules, or Azure Communication Services acceptable use policies</li>
         </ul>
 
         <p>
-          We reserve the right to block, suspend, or terminate access to the Service if
-          prohibited content is detected or if required by carriers, regulators, or ACS.
-          Customers are solely responsible for the content they transmit through the Service
-          and for any consequences arising from violations.
+          Alert Bridge may block, suspend, or terminate access to the Service if abuse, prohibited usage, or policy violations are detected,
+          even if outbound SMS content is generic, because the platform may still be used to facilitate prohibited messaging workflows.
+          We may take action as required by carriers, regulators, or Azure Communication Services.
         </p>
 
-        <h2>Customer Responsibility for Content and Compliance</h2>
+        <h2>Customer Responsibility for Compliance</h2>
         <p>
-          Customers are solely responsible for all content transmitted through the Service,
-          including compliance with CTIA guidelines, TCPA and FCC rules, ACS acceptable use
-          policies, and carrier regulations. Customers must ensure that their use of the
-          Service complies with all applicable laws and messaging standards.
-        </p>
-
-        <p>
-          Customers agree to indemnify, defend, and hold harmless D L Brandt LLC from any
-          claims, fines, penalties, enforcement actions, or costs (including reasonable
-          attorneys&apos; fees) arising from content sent through the Service or from violations
-          of these Terms by the customer or its users.
+          Customers are solely responsible for their use of the Service, including ensuring that their operational alerting systems, administrators,
+          and users comply with these Terms and all applicable laws and messaging standards. Customers agree to indemnify, defend, and hold harmless
+          D L Brandt LLC from claims, fines, penalties, enforcement actions, or costs (including reasonable attorneys&apos; fees) arising from the customer’s
+          use of the Service or violations of these Terms.
         </p>
 
         <h2>Carrier Enforcement and Message Blocking</h2>
         <p>
-          Carriers and regulatory authorities may block, filter, or delay messages at their
-          discretion based on content, volume, sender reputation, or compliance concerns.
-          Alert Bridge does not control carrier filtering and is not liable for blocked,
-          delayed, or undelivered messages.
+          Carriers and regulatory authorities may block, filter, or delay messages at their discretion based on volume, sender reputation,
+          compliance concerns, or other factors. Alert Bridge does not control carrier filtering and is not liable for blocked, delayed,
+          or undelivered messages.
         </p>
 
         <p>
-          Customers must promptly comply with any carrier or regulatory enforcement
-          directives communicated by D L Brandt LLC. Continued violations may result in
+          Customers must promptly comply with any enforcement directives communicated by D L Brandt LLC. Continued violations may result in
           suspension or termination of Service.
         </p>
 
         <h2>Fair Use and Rate Limiting</h2>
         <p>
-          To maintain system stability and comply with carrier requirements, we may apply
-          rate limiting, throttling, or usage caps, even when not explicitly stated in
-          the customer’s subscription plan. Abnormal or excessive traffic patterns may
-          result in temporary or permanent restrictions.
+          To maintain system stability and comply with carrier requirements, we may apply rate limiting, throttling, or usage caps, even when not explicitly
+          stated in the customer’s subscription plan. Abnormal or excessive traffic patterns may result in temporary or permanent restrictions.
         </p>
 
         <p>
-          We may block traffic that threatens Service stability or violates carrier fair-
-          use policies.
+          We may block traffic that threatens Service stability or violates carrier fair-use policies.
         </p>
 
         <h2>Security Responsibilities</h2>
         <p>
-          We implement reasonable technical and organizational measures to secure the
-          Service. Customers are responsible for securing their administrative accounts,
-          enforcing internal access controls, reviewing audit logs, and ensuring that
-          only authorized personnel configure or trigger alerts.
+          We implement reasonable technical and organizational measures to secure the Service. Customers are responsible for securing their administrative accounts,
+          enforcing internal access controls, reviewing logs where available, and ensuring that only authorized personnel configure or trigger alerts.
         </p>
 
         <p>
-          We are not responsible for unauthorized access or message sending resulting
-          from compromised customer credentials, weak internal controls, or misconfiguration.
+          We are not responsible for unauthorized access or message sending resulting from compromised customer credentials, weak internal controls, or misconfiguration.
         </p>
 
         <h2>Subscription, Billing, and Termination</h2>
         <p>
-          Use of the Service requires an active subscription. Subscription fees are
-          billed in advance and are non-refundable except where required by law.
-          Customers are responsible for maintaining accurate billing information and
-          for all charges incurred under their account.
+          Use of the Service requires an active subscription. Subscription fees are charged at the start of each billing period
+          (and on each renewal date) and are generally non-refundable except where required by law. Customers are responsible for
+          maintaining accurate billing information and for all charges incurred under their account.
         </p>
 
         <p>
-          Either party may terminate the subscription by providing written notice.
-          Upon termination, access to the Service will be disabled, and all data will
-          be deleted according to the applicable retention policy.
+          Customers may cancel their subscription at any time through Lemon Squeezy without providing notice to D L Brandt LLC.
+          Cancellation stops future renewals; access remains available through the end of the current billing period. After the
+          subscription ends, access to the Service will be disabled and data will be deleted according to the applicable retention policy.
         </p>
 
         <p>
-          We may suspend or terminate access immediately if a customer violates these
-          Terms, carrier policies, or applicable regulations.
+          We may suspend or terminate access immediately if a customer violates these Terms, carrier policies, Azure Communication
+          Services requirements, or applicable regulations.
         </p>
-
+        
         <h2>Service Availability and Changes</h2>
         <p>
-          We may modify, suspend, or discontinue the Service or any component at any
-          time for maintenance, improvement, legal compliance, or technical reasons.
+          We may modify, suspend, or discontinue the Service or any component at any time for maintenance, improvement, legal compliance, or technical reasons.
           We will make reasonable efforts to notify customers of material changes.
         </p>
 
         <h2>Disclaimer</h2>
         <p>
-          Alert Bridge is provided on an “as-is” and “as-available” basis. To the
-          extent permitted by law, we disclaim all warranties, express or implied,
-          including warranties of merchantability, fitness for a particular purpose,
-          and non-infringement.
+          Alert Bridge is provided on an “as-is” and “as-available” basis. To the extent permitted by law, we disclaim all warranties, express or implied,
+          including warranties of merchantability, fitness for a particular purpose, and non-infringement.
         </p>
 
         <p>
-          SMS delivery is not guaranteed. Delivery timing, sequencing, or success may be
-          affected by carrier filtering, network conditions, handset issues, or external
+          SMS delivery is not guaranteed. Delivery timing, sequencing, or success may be affected by carrier filtering, network conditions, handset issues, or external
           systems. We do not guarantee delivery of any particular message.
         </p>
 
         <h2>Limitation of Liability</h2>
         <p>
-          To the extent permitted by law, we will not be liable for any indirect,
-          incidental, special, consequential, or punitive damages arising out of or
-          relating to use of the Service. Our total aggregate liability will not exceed
-          the fees paid for the Service during the twelve (12) months preceding the
-          event giving rise to the claim.
+          To the extent permitted by law, we will not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or relating
+          to use of the Service. Our total aggregate liability will not exceed the fees paid for the Service during the twelve (12) months preceding the event giving
+          rise to the claim.
         </p>
 
         <h2>Changes to These Terms</h2>
         <p>
-          We may update these Terms from time to time. When updates occur, we will
-          revise the effective date and notify customer organizations where appropriate.
+          We may update these Terms from time to time. When updates occur, we will revise the effective date and notify customer organizations where appropriate.
         </p>
 
         <h2>Contact</h2>
         <p>
-          If you have questions about these Terms, please contact your organization’s
-          administrator or D L Brandt LLC using the communication details provided with
-          your subscription.
+          If you have questions about these Terms, please contact your organization’s administrator or email
+          <a href="mailto:support@alertbridge.app">support@alertbridge.app</a>.
         </p>
       </section>
     </main>
@@ -246,12 +249,12 @@
     <footer class="site-footer">
       <div class="container footer-container">
         <div class="footer-links">
-          
+
           <a href="../privacy-policy/index.html">Privacy Policy</a>
           <a href="../terms-and-conditions/index.html">Terms & Conditions</a>
           <a href="../sms-program/index.html">SMS Program</a>
           <a href="../sms-consent/index.html">SMS Consent</a>
-        
+
         </div>
         <span>© <span id="year"></span> Alert Bridge. All rights reserved.</span>
       </div>

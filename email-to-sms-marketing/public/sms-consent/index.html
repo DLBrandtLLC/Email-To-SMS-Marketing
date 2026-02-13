@@ -1,10 +1,11 @@
+<!-- /public/sms-consent/index.html -->
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <title>Alert Bridge SMS Consent</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Opt in or opt out of Alert Bridge SMS alerts." />
+    <meta name="description" content="Manage your Alert Bridge SMS delivery status (enable or stop operational alerts) with phone verification." />
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles.css" />
 
@@ -64,13 +65,13 @@
             This page requires JavaScript to verify your phone number.
             If you can’t enable JavaScript, email
             <a href="mailto:support@alertbridge.app">support@alertbridge.app</a>
-            for help opting in or out.
+            for help managing SMS delivery.
           </div>
         </noscript>
 
         <div id="tokenError" class="alert alert-warning hidden">
-          If your organization provided an invitation link, use that link to display the organization name and complete enrollment.
-          You can still manage your phone’s SMS delivery status here after verification.
+          If you arrived from an alert or invitation link, use that link to display the organization name.
+          You can still manage your phone’s Alert Bridge delivery status here after verification.
         </div>
 
         <!-- Call to Action (Microsoft ACS “Consent” requirements) -->
@@ -83,8 +84,9 @@
           </p>
 
           <p class="muted" style="margin-top: 6px;">
-            If your organization provided you a link, use that link to display the organization name and complete enrollment.
-            Without a link, you can still manage your phone’s global SMS delivery status (opt out / re-opt in) after verification.
+            If you arrived from an alert or invitation link, your organization may be shown here.
+            Enrollment is invitation-based: your administrator shares a link, and you enable delivery after phone verification.
+            Without a link, you can still manage your phone’s global Alert Bridge delivery status (stop / re-enable) after verification.
           </p>
 
           <ul>
@@ -93,13 +95,24 @@
               <strong>Sending number:</strong> Messages are sent from <strong>+18335277650</strong> (<strong>+1 833-527-7650</strong>).
             </li>
             <li>
-              <strong>Recurring program:</strong> You may receive recurring operational alerts.
-              <strong>Frequency varies</strong> based on events (no fixed schedule).
+              <strong>Message content:</strong> SMS messages are generic notifications with a secure link.
+              Detailed alert content is shown on the web after phone verification.
             </li>
-            <li><strong>Opt-in:</strong> Verify your phone number, then select <em>Enable SMS Alerts</em>.</li>
             <li>
-              <strong>Opt-out:</strong> Reply <strong>STOP</strong> to any Alert Bridge message, or verify your number here and select <em>Stop SMS Alerts</em>.
-              We also honor common opt-out keywords such as <strong>UNSUBSCRIBE</strong> and <strong>CANCEL</strong>.
+              <strong>Recurring program:</strong> You may receive recurring operational notifications.
+              Notifications are typically batched (for example, no more than one message every 10 minutes when new alerts are present).
+              Verification codes and urgent notifications may also be sent.
+            </li>
+            <li>
+              <strong>Manage delivery:</strong> Verify your phone number, then select <em>Enable SMS Alerts</em> or <em>Stop SMS Alerts</em>.
+            </li>
+            <li>
+              <strong>Opt-out by reply:</strong> Reply <strong>STOP</strong> to any Alert Bridge message to disable delivery.
+              Reply <strong>START</strong> to resume. Reply <strong>HELP</strong> for help.
+            </li>
+            <li>
+              <strong>Important:</strong> If you have opted out by replying <strong>STOP</strong>, you must reply <strong>START</strong>
+              before you can receive verification codes again.
             </li>
             <li><strong>Fees:</strong> Message and data rates may apply.</li>
           </ul>
@@ -130,10 +143,14 @@
             We use a standard one-time-code verification flow to confirm you control the phone number you’re managing.
           </p>
 
+          <div class="alert alert-warning" style="margin-top: 10px;">
+            If you previously replied <strong>STOP</strong>, reply <strong>START</strong> first so you can receive verification codes.
+          </div>
+
           <!-- Reviewer-facing honesty (kept simple, not "demo" language) -->
-          <div class="alert alert-warning" id="verificationNotice">
-            During initial launch, SMS delivery will be unavailable until our Azure toll-free verification is approved.
-            The verification experience below is representative until SMS sending is enabled.
+          <div class="alert alert-warning" id="verificationNotice" style="margin-top: 10px;">
+            During initial launch, SMS sending (including verification codes) will be unavailable until our Azure toll-free verification is approved.
+            The experience below reflects the intended verification flow once SMS sending is enabled.
           </div>
 
           <form id="verifyForm" class="form">
@@ -148,7 +165,7 @@
                 required
               />
               <div class="field-hint">US numbers supported. Enter your mobile number.</div>
-              <div class="field-hint">You’ll choose to enable or stop SMS alerts after verification.</div>
+              <div class="field-hint">After verification, you can enable or stop SMS delivery for this number.</div>
             </div>
 
             <div class="form-actions">
@@ -180,9 +197,10 @@
             </fieldset>
 
             <p class="muted" style="margin-top: 10px;">
-              By selecting <strong>Enable SMS Alerts</strong>, you consent to receive recurring operational SMS alerts
+              By selecting <strong>Enable SMS Alerts</strong>, you consent to receive recurring operational SMS notifications
               from Alert Bridge at the phone number you verified. Message and data rates may apply.
               Reply <strong>STOP</strong> to opt out and <strong>HELP</strong> for help.
+              If you reply <strong>STOP</strong>, you will not receive operational notifications or verification codes again until you reply <strong>START</strong>.
             </p>
 
             <p id="codeLockedNote" class="muted locked-note">
@@ -197,16 +215,17 @@
         <div class="card locked" id="stepConsent">
           <div class="step-title">
             <span class="step-chip">Step 2</span>
-            <h2 style="margin:0;">Manage SMS alerts</h2>
+            <h2 style="margin:0;">Manage SMS delivery</h2>
           </div>
 
           <p class="muted">
-            SMS alerts for <span id="orgName2">your organization</span>.
+            SMS delivery status for <span id="orgName2">your organization</span>.
             All Alert Bridge SMS is sent from <strong>+18335277650</strong> (<strong>+1 833-527-7650</strong>), regardless of organization.
           </p>
 
           <p class="muted" style="margin-top: 8px;">
-            This is a recurring operational alert program. Frequency varies based on events (no fixed schedule).
+            This is a recurring operational program. Notifications are typically batched (for example, no more than one message every 10 minutes
+            when new alerts are present). Verification codes and urgent notifications may also be sent.
             Messages are operational only (no marketing).
           </p>
 
@@ -230,7 +249,8 @@
 
           <p class="muted" style="margin-top: 14px;">
             You can opt out anytime by replying <strong>STOP</strong>.
-            To resume later, reply <strong>START</strong> or return to this page and opt in again.
+            To resume later, reply <strong>START</strong> or return to this page and enable delivery again.
+            If you reply <strong>STOP</strong>, you will no longer receive operational notifications or verification codes until you reply <strong>START</strong>.
             For help, reply <strong>HELP</strong> to receive support contact info and a link to this page.
           </p>
         </div>

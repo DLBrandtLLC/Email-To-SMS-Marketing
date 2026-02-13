@@ -1,3 +1,4 @@
+// /public/sms-consent/sms-consent.js
 (() => {
   const $ = (id) => document.getElementById(id);
 
@@ -168,8 +169,9 @@
   async function init() {
     state.token = getTokenFromUrl();
 
-    // Token is optional. Without it, user can still manage global SMS status after verification.
+    // Token is optional.
     // With it, org name can be shown (and later tenant enrollment can be completed).
+    // Without it, user can still manage global SMS status after verification.
     setOrgName("your organization");
 
     if (!state.token) {
@@ -355,9 +357,9 @@
       setConsentBadge(state.consentStatus);
 
       if (action === "optin") {
-        setAlert(consentStatusEl, "alert-success", "SMS alerts are enabled for your phone number.");
+        setAlert(consentStatusEl, "alert-success", "SMS delivery is enabled for your phone number.");
       } else {
-        setAlert(consentStatusEl, "alert-success", "SMS alerts are stopped for your phone number.");
+        setAlert(consentStatusEl, "alert-success", "SMS delivery is stopped for your phone number.");
       }
     } catch (e) {
       setAlert(consentStatusEl, "alert-error", "Unable to update your SMS status. Please try again.");

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Alert Bridge converts critical emails into SMS alerts for teams that can’t afford to miss important signals."
+      content="Alert Bridge captures critical alert emails into a secure log and sends SMS notifications with a secure link so teams can view details after phone verification."
     />
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="styles.css" />
@@ -37,9 +37,12 @@
           </h1>
 
           <p class="hero-lead">
-            Alert Bridge turns critical emails into focused SMS notifications —
-            so the right people see important events, even when they are away
-            from their inbox.
+            Alert Bridge captures critical alert emails into a secure log and sends focused SMS notifications —
+            so the right people know when something needs attention, even when they are away from their inbox.
+          </p>
+
+          <p class="hero-lead">
+            Recipients confirm access via phone verification before viewing alert details.
           </p>
 
           <p class="hero-constraint">
@@ -74,8 +77,8 @@
             <h3>Email in, SMS out</h3>
             <p>
               Point alerting systems at a dedicated email address. Alert Bridge
-              receives the message, applies your routing rules, and delivers
-              compact SMS notifications to the right recipients or groups.
+              receives the message, stores it in your alert log, and sends
+              a generic notification and secure link to view details.
             </p>
           </article>
 
@@ -100,6 +103,28 @@
       </section>
 
       <section class="section">
+        <h2>How it works</h2>
+
+        <p>
+          Think of Alert Bridge like a secure “heads-up” for important alerts.
+          Your systems send the technical details by email, and Alert Bridge sends a short text
+          to let the right people know something needs attention. 
+        </p>
+
+        <ol>
+          <li><strong>Your system emails an alert</strong> to Alert Bridge.</li>
+          <li><strong>Alert Bridge saves it</strong> in your secure alert log.</li>
+          <li><strong>Alert Bridge sends a short text</strong> (usually at most once every few minutes) with a link.</li>
+          <li><strong>You tap the link and verify your phone</strong> so we know it’s really you.</li>
+          <li><strong>You see the full details</strong> in the alert log.</li>
+        </ol>
+
+        <p>
+          SMS stays simple and consistent. The detailed alert content stays behind the secure link.
+        </p>
+      </section>
+      
+      <section class="section">
         <h2>Respectful messaging</h2>
         <p>
           We take consent, data protection, and message reliability seriously.
@@ -107,7 +132,7 @@
           without spamming or surprise charges.
         </p>
         <ul>
-          <li>Clear opt-out instructions in every SMS alert where applicable.</li>
+          <li>Clear STOP / HELP instructions in outbound notifications.</li>
           <li>No sale of personal data to third parties.</li>
           <li>Log retention and access aligned to your organization’s policies.</li>
         </ul>
@@ -136,12 +161,12 @@
     <footer class="site-footer">
       <div class="container footer-container">
         <div class="footer-links">
-          
+
           <a href="./privacy-policy/index.html">Privacy Policy</a>
           <a href="./terms-and-conditions/index.html">Terms & Conditions</a>
           <a href="./sms-program/index.html">SMS Program</a>
           <a href="./sms-consent/index.html">SMS Consent</a>
-        
+
         </div>
         <span>© <span id="year"></span> Alert Bridge. All rights reserved.</span>
       </div>

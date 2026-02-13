@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Simple steps: subscribe, claim your tenant, set up routes and recipients, then start sending operational SMS alerts."
+      content="Simple steps: subscribe, claim your tenant, set up routes and recipients, then start receiving periodic SMS notifications with a secure link to view alert logs."
     />
     <link rel="stylesheet" href="../styles.css" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -40,7 +40,7 @@
 
         <p class="hero-lead">
           Subscribing creates a private tenant for your organization. It does not automatically start texting anyone.
-          SMS delivery begins only after you finish setup and add your routes and recipients.
+          SMS delivery begins only after you finish setup, connect your alerting systems, and invite recipients.
         </p>
 
         <p class="hero-constraint">
@@ -68,10 +68,14 @@
             </article>
 
             <article class="feature">
-              <h3>3) Add a route and add recipients</h3>
+              <h3>3) Add a route, groups, and invite recipients</h3>
               <p>
-                Create a route (an inbound email address), create a group, and add the people who should receive alerts.
-                Your admins control who is added. Recipients control whether their phone receives messages.
+                Create a route (an inbound email address) and define the groups that should be notified.
+                Then invite recipients by sending them an enrollment link through your normal channels
+                (email, chat, ticketing, etc.).
+              </p>
+              <p style="margin: 10px 0 0 0;">
+                Recipients follow the link and opt in by verifying their phone number with a one-time code.
               </p>
             </article>
 
@@ -80,7 +84,11 @@
               <p>
                 Tell your teams (on-call, facilities, property operations, and IT/OT) where to send alert emails —
                 your new Alert Bridge inbound email address. Once your systems start emailing that address,
-                Alert Bridge routes each alert and texts the right group. Use Logs to confirm delivery.
+                Alert Bridge captures each inbound alert into logs and sends periodic notifications with a secure link.
+                Use Logs to confirm receipt and review details.
+              </p>
+              <p style="margin: 10px 0 0 0;">
+                Recipients do not need accounts; they verify phone control to view logs.
               </p>
             </article>
 
@@ -91,11 +99,15 @@
           <h2>Good to know</h2>
 
           <ul>
-            <li><strong>No contact importing:</strong> recipients are added explicitly by tenant administrators.</li>
+            <li>
+              <strong>Invitation-based enrollment:</strong> administrators invite recipients by sending an enrollment link.
+              Recipients opt in after phone verification.
+            </li>
             <li><strong>Operational only:</strong> Alert Bridge does not send marketing or promotional messages.</li>
             <li>
               <strong>Recipient control:</strong> recipients may reply <strong>STOP</strong> to disable delivery and <strong>START</strong> to resume,
-              or use the <a href="../sms-consent/index.html">SMS Consent</a> page.
+              or use the <a href="../sms-consent/index.html">SMS Consent</a> page. If a recipient replies <strong>STOP</strong>, they will not receive
+              operational notifications or phone verification codes until they reply <strong>START</strong>.
             </li>
           </ul>
 
@@ -126,12 +138,12 @@
     <footer class="site-footer">
       <div class="container footer-container">
         <div class="footer-links">
-          
+
           <a href="../privacy-policy/index.html">Privacy Policy</a>
           <a href="../terms-and-conditions/index.html">Terms & Conditions</a>
           <a href="../sms-program/index.html">SMS Program</a>
           <a href="../sms-consent/index.html">SMS Consent</a>
-        
+
         </div>
         <span>© <span id="year"></span> Alert Bridge. All rights reserved.</span>
       </div>

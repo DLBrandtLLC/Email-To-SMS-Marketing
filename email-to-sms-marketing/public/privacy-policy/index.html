@@ -26,7 +26,6 @@
 
     <main class="main-content container">
       <section class="page privacy">
-        <!-- CONTENT PRESERVED -->
         <h1>Privacy Policy</h1>
 
         <p>
@@ -50,7 +49,24 @@
         <ul>
           <li>Business contact information such as name, work email address, and mobile phone number</li>
           <li>Tenant and configuration data provided by administrators</li>
-          <li>Alert metadata including timestamps, routing details, and SMS delivery status</li>
+
+          <li>
+            <strong>Inbound email content stored in logs</strong>, which may include message subject, body, headers,
+            routing details, timestamps, and delivery outcomes. If enabled, logs may also include attachments or
+            attachment metadata.
+          </li>
+
+          <li>
+            <strong>Phone verification and consent events</strong>, such as one-time-code (OTP) send attempts, verification attempts,
+            timestamps, and delivery outcomes.
+          </li>
+
+          <li>
+            <strong>Access and audit logs</strong> required to operate and secure the Service, which may include the phone number used
+            for verification, tenant/organization context, timestamps, and technical request metadata (for example IP address and
+            browser/device details) when collected.
+          </li>
+
           <li>System logs required to operate, secure, and audit the Service</li>
         </ul>
 
@@ -70,74 +86,75 @@
 
         <h2>How Phone Numbers Are Obtained</h2>
         <p>
-          Phone numbers are supplied directly by customer organizations. Authorized
-          administrators add or update recipients in the Alert Bridge admin console
-          according to their internal processes (e.g., HR systems, IT directories,
-          or on-call schedules). Alert Bridge does not collect or purchase phone
-          numbers from external sources and does not add recipients independently.
+          Phone numbers are provided through an administrator-managed invitation workflow. Authorized tenant administrators
+          invite recipients by sharing an enrollment link through their normal channels (for example email, chat, or ticketing),
+          based on internal processes such as on-call schedules, facilities teams, or contractor lists.
+        </p>
+        <p>
+          Recipients enter their own mobile phone number and confirm control using phone verification (one-time code) before
+          enabling SMS delivery. Administrators do not need to enter phone numbers into Alert Bridge to complete enrollment.
         </p>
 
         <h2>Use of SMS and Message Content</h2>
         <p>
-          Phone numbers are used exclusively to deliver operational SMS alerts on
-          behalf of the customer organization. These alerts may include equipment
-          alarms, facility notifications, and operational events requiring timely
-          attention.
+          Phone numbers are used to deliver platform-branded operational notifications from Alert Bridge. Outbound SMS messages are a
+          <strong>generic notification with a secure link</strong>. Detailed alert content (including the inbound email content that triggered
+          the alert) is available in the Alert Bridge web log after phone verification.
         </p>
 
         <p>
-          Alert Bridge does <strong>not</strong> send marketing or promotional SMS
-          messages.
+          Alert Bridge does <strong>not</strong> send marketing or promotional SMS messages.
         </p>
 
         <p>Message and data rates may apply depending on the recipient’s mobile plan.</p>
 
         <h2>Recipient Opt-Out (STOP) and Re-Enable (START)</h2>
         <p>
-          Recipients may reply <strong>STOP</strong> to any Alert Bridge SMS message
-          to disable further SMS delivery. A confirmation message is sent after STOP
-          is processed. If a recipient later wishes to resume notifications, they may
-          reply <strong>START</strong> to re-enable SMS delivery, followed by a
-          confirmation message.
+          Recipients may reply <strong>STOP</strong> to any Alert Bridge SMS message to disable further SMS delivery.
+          A confirmation message is sent after STOP is processed. If a recipient later wishes to resume notifications,
+          they may reply <strong>START</strong> to re-enable SMS delivery, followed by a confirmation message.
         </p>
 
         <p>
-          STOP and START actions affect only SMS delivery. Administrators may still
-          view, disable, or remove recipient records according to internal processes.
+          If a recipient replies <strong>STOP</strong>, they will no longer receive operational notifications or phone verification codes
+          from Alert Bridge until they reply <strong>START</strong> to re-enable SMS delivery.
+        </p>
+
+        <p>
+          STOP and START actions affect SMS delivery for the recipient’s phone number. Tenant administrators may still manage recipient records
+          (for example, enrolling or removing recipients) according to internal processes, but SMS delivery remains disabled until the recipient
+          re-enables it with <strong>START</strong>.
         </p>
 
         <h2>How We Use Information</h2>
         <p>The information we process is used to:</p>
         <ul>
-          <li>Deliver SMS alerts to authorized recipients</li>
+          <li>Deliver operational SMS notifications and verification codes to authorized recipients</li>
+          <li>Capture inbound email messages into logs for tenant-scoped alert history and troubleshooting</li>
           <li>Route inbound email messages to the appropriate tenant for processing</li>
           <li>Maintain audit logs for operational and security purposes</li>
-          <li>Provide administrative tools for managing recipients and routing rules</li>
+          <li>Provide administrative tools for managing enrollment, recipients, and routing rules</li>
           <li>Monitor system performance, delivery outcomes, and platform reliability</li>
+          <li>Prevent abuse and investigate suspicious activity</li>
         </ul>
 
         <h2>Legal Basis for Processing</h2>
         <p>
-          Alert Bridge processes information under the direction of customer
-          organizations and based on their legitimate business interests in delivering
-          operational alerts to authorized personnel. Processing may also occur as
-          necessary to perform the Service, maintain security, or comply with legal
+          Alert Bridge processes information under the direction of customer organizations and based on their legitimate business interests in delivering
+          operational alerts to authorized personnel. Processing may also occur as necessary to perform the Service, maintain security, or comply with legal
           obligations.
         </p>
 
         <h2>Processing on Behalf of Customer Organizations</h2>
         <p>
-          Alert Bridge processes all information under the instructions of the customer
-          organization administering the tenant. Customer organizations retain ownership
-          of all data they provide or generate. We do not access customer data except as
-          required to operate, support, troubleshoot, or secure the Service.
+          Alert Bridge processes information under the instructions of the customer organization administering the tenant. Customer organizations retain ownership
+          of all data they provide or generate. We do not access customer data except as required to operate, support, troubleshoot, or secure the Service.
         </p>
 
         <h2>Data Retention</h2>
         <p>
-          Alert Bridge retains operational logs—including routing metadata, delivery
-          status, audit trails, and alert timestamps—based on the retention period of
-          the customer’s subscription plan:
+          Alert Bridge retains operational logs—including inbound email content stored in logs, routing metadata, delivery status, audit trails, and timestamps—based
+          on the retention period of the customer’s subscription plan:
         </p>
         <ul>
           <li>Starter Plan: 30 days</li>
@@ -147,74 +164,59 @@
         </ul>
 
         <p>
-          Logs older than the retention period are permanently deleted and cannot be
-          recovered. Customer organizations may request earlier deletion, subject to
+          Logs older than the retention period are permanently deleted and cannot be recovered. Customer organizations may request earlier deletion, subject to
           operational or security requirements.
         </p>
 
         <h2>Information Sharing</h2>
         <p>
-          We share information only with service providers necessary to deliver the
-          Service, such as telecommunications carriers and SMS routing providers. We do
+          We share information only with service providers necessary to deliver the Service, such as telecommunications carriers and SMS routing providers. We do
           not sell personal information or share it for independent commercial purposes.
         </p>
 
         <h2>Data Storage and Transfers</h2>
         <p>
-          Information processed by Alert Bridge is stored and transmitted using Microsoft
-          Azure infrastructure in the <strong>United States</strong>, primarily in the
+          Information processed by Alert Bridge is stored and transmitted using Microsoft Azure infrastructure in the <strong>United States</strong>, primarily in the
           West US 2 region. All data transfers occur using encrypted communication channels.
         </p>
 
         <h2>Access to Information</h2>
         <p>
-          Access to customer data is restricted to authorized personnel at
-          D L Brandt LLC who require such access to operate, support, or secure the
-          Service. Access is limited, logged where appropriate, and used only for
-          operational purposes such as troubleshooting, maintenance, or investigating
-          abuse.
+          Access to customer data is restricted to authorized personnel at D L Brandt LLC who require such access to operate, support, or secure the Service.
+          Access is limited, logged where appropriate, and used only for operational purposes such as troubleshooting, maintenance, or investigating abuse.
         </p>
 
         <h2>Security</h2>
         <p>
-          We implement reasonable administrative, technical, and physical safeguards
-          to protect the information processed by Alert Bridge. No system can be
-          guaranteed completely secure, and we disclaim absolute security of stored
-          or transmitted information.
+          We implement reasonable administrative, technical, and physical safeguards to protect the information processed by Alert Bridge. No system can be
+          guaranteed completely secure, and we disclaim absolute security of stored or transmitted information.
         </p>
 
         <h2>Your Choices</h2>
         <p>
-          If you receive SMS alerts and wish to stop receiving them, you may reply
-          <strong>STOP</strong> at any time. To resume notifications, reply
-          <strong>START</strong>.
+          If you receive Alert Bridge SMS notifications and wish to stop receiving them, you may reply <strong>STOP</strong> at any time. To resume notifications,
+          reply <strong>START</strong>. If you have opted out by replying <strong>STOP</strong>, you will not receive operational notifications or phone verification codes
+          until you reply <strong>START</strong>.
         </p>
         <p>
-          You may also request changes through your organization’s designated
-          administrator.
+          You may also request changes through your organization’s designated administrator.
         </p>
 
         <h2>Customer Responsibilities</h2>
         <p>
-          Customer organizations are responsible for ensuring that information they
-          provide is accurate and authorized, securing administrative access to their
-          tenant, and responding to internal requests regarding SMS enrollment or
-          removal. Customer misconfiguration or unauthorized access is outside the
-          control of Alert Bridge.
+          Customer organizations are responsible for ensuring that information they provide is accurate and authorized, securing administrative access to their tenant,
+          and responding to internal requests regarding enrollment or removal. Customer misconfiguration or unauthorized access is outside the control of Alert Bridge.
         </p>
 
         <h2>Changes to This Policy</h2>
         <p>
-          We may update this Privacy Policy from time to time. When changes occur,
-          we will update the effective date and notify customer organizations when
-          appropriate.
+          We may update this Privacy Policy from time to time. When changes occur, we will update the effective date and notify customer organizations when appropriate.
         </p>
 
         <h2>Contact</h2>
         <p>
-          If you have questions about this Privacy Policy, please contact your
-          organization’s administrator or reach out to D L Brandt LLC using the
-          contact information provided in your service communications.
+          If you have questions about this Privacy Policy or how Alert Bridge handles data, contact us at
+          <a href="mailto:support@alertbridge.app">support@alertbridge.app</a>.
         </p>
       </section>
     </main>
@@ -222,12 +224,12 @@
     <footer class="site-footer">
       <div class="container footer-container">
         <div class="footer-links">
-          
+
           <a href="../privacy-policy/index.html">Privacy Policy</a>
           <a href="../terms-and-conditions/index.html">Terms & Conditions</a>
           <a href="../sms-program/index.html">SMS Program</a>
           <a href="../sms-consent/index.html">SMS Consent</a>
-        
+
         </div>
         <span>© <span id="year"></span> Alert Bridge. All rights reserved.</span>
       </div>
