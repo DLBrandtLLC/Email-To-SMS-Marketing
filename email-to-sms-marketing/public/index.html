@@ -63,10 +63,10 @@
             </a>
           </div>
 
-          <p class="hero-note">
-            Checkout currently opens in demo mode (no charges). For message consent and opt-out details, see our
-            <a href="./sms-program/index.html">SMS Program</a> page.
-          </p>
+          <div class="alert alert-warning" style="margin-top: 14px;">
+            Checkout is currently operating in <strong>test mode</strong> while we complete Azure SMS compliance review and toll-free verification.
+            The Subscribe button opens a test checkout flow and should not be used for live purchasing until SMS sending is enabled for production use.
+          </div>
         </div>
       </section>
 
@@ -114,7 +114,7 @@
         <ol>
           <li><strong>Your system emails an alert</strong> to Alert Bridge.</li>
           <li><strong>Alert Bridge saves it</strong> in your secure alert log.</li>
-          <li><strong>Alert Bridge sends a short text</strong> (usually at most once every few minutes) with a link.</li>
+          <li><strong>Alert Bridge sends a short text</strong> (for example, no more than one message every 10 minutes when new alerts are present) with a link.</li>
           <li><strong>You tap the link and verify your phone</strong> so we know it’s really you.</li>
           <li><strong>You see the full details</strong> in the alert log.</li>
         </ol>
